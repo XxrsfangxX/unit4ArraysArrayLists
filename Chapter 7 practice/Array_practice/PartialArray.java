@@ -14,21 +14,54 @@ public class PartialArray
         }
     }
     
-    public void remove(int pos){
+        public void remove(int pos){
         for (int i=pos+1; i<this.currentsize; i++){
             this.values[i-1]= this.values[i];
         }
-    this.currentsize--;
+        this.currentsize--;
+        //
     
-    }
+        }
     public void insert(int pos, int value){
-        if ( this.currentsize< this.values.length){
+       if (this.currentsize< this.values.length){ 
+           this.growArray(); 
+        }
             this.currentsize++;
             for (int i= this.currentsize-1; i> pos; i--){
                 this.values[i]= this.values[i-1];
             }
-            values[pos]= value;
+            this.values[pos]= value;
 
+        
+       
+            
         }
+    
+    public void swap(int posA, int posB){
+        int temp=this.values[posA];
+       this.values[posA]= this.values[posB];
+       this.values[posB]= this.values[temp];
+        
+    }
+    private void growArray(){
+        
+        int [] newArray= new int [this.currentsize*2];
+        
+        for (int i=0; i<this.currentsize; i++){
+            newArray[i]= this.values[i];
+        }
+        
+        this.values= newArray;
+        
+        
+        
+        
+    }
+    
+    public static void main(String[] args){
+        PartialArray array= new PartialArray();
+        array.remove(2);
+        
+        
     }
 }
