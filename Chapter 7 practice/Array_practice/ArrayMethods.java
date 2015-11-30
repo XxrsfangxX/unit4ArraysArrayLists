@@ -27,7 +27,7 @@ public class ArrayMethods
     }
     public void evensToZero(){
         for( int i=0; i<values.length; i++){
-            if (i%2== 0){
+            if (values[i]%2== 0){
                 values[i]=0;
             }
         }
@@ -48,25 +48,33 @@ public class ArrayMethods
         
        
             if( (values.length)%2==0){
+                // checks odd or even
            int [] newArray= new int[values.length-2];
-           for(int i=0;i <(values.length/2)-2; i++){
+           for(int i=0;i <=(values.length/2)-1; i++){
                newArray[i]= values[i];
             }
-                for(int i=0; i< (values.length/2)-1; i++){ 
-                newArray[((values.length+(i*2))/2)-1]= newArray[((values.length+1+i)/2)+1];
-           
+                for(int x=(values.length/2)-1; x<= values.length-3; x++){ 
+                
+                    newArray[x]= values[x+2];
            }
-           newArray[values.length-2]= newArray[values.length-1];
+          
+           values= newArray;
+           
+           
         }
         else{
             int[] newArray= new int[values.length-1];
-            for(int i=0;i <=(values.length/2)-1; i++){
+                     for(int i=0;i <=(values.length/2)-2; i++){
                newArray[i]= values[i];
             }
-                for(int i=0; i< (values.length/2)-1; i++){ 
-                newArray[((values.length+(i*2))/2)-1]= newArray[((values.length+1+i)/2)+1];
-           
+                for(int x=values.length/2-1; x< values.length-1; x++){ 
+                
+                    newArray[x]= values[x+1];
            }
+           
+           values= newArray;
+           
+           
         }
     }
 }
