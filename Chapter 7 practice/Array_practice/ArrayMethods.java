@@ -64,10 +64,10 @@ public class ArrayMethods
         }
         else{
             int[] newArray= new int[values.length-1];
-                     for(int i=0;i <=(values.length/2)-2; i++){
+                     for(int i=0;i <=(values.length/2)-1; i++){
                newArray[i]= values[i];
             }
-                for(int x=values.length/2-1; x< values.length-1; x++){ 
+                for(int x=values.length/2; x< newArray.length; x++){ 
                 
                     newArray[x]= values[x+1];
            }
