@@ -1,4 +1,4 @@
-
+import java.util.Random;
 /**
  * The model for radar scan and accumulator
  * 
@@ -39,7 +39,8 @@ public class Radar
         //
         // !!! add code here !!!
         //
-        
+        boolean [][]  currentScan= new boolean [rows][cols];
+        int [][] accumulator= new int [rows][cols];
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method for the unit test
@@ -63,7 +64,21 @@ public class Radar
         //    4. update the accumulator 2D array based on the state of the currentScan 2D array
         //    5. increment the numScans instance variable
         
+        for( int i=0; i< currentScan.length; i++){
+            for( int j=0; j< (currentScan[i]).length; j++){
+                currentScan[i][j]= false;
+            }
+        }
+        setMonsterLocation(monsterLocationRow, monsterLocationCol);
         
+        
+        for( int i=0; i< currentScan.length; i++){
+            for( int j=0; j<currentScan[i].length; j++){
+                if(currentScan[i][j]== true){
+                    accumulator[i][j]+=1;
+                }
+            }
+        }
         //
         // !!! add code here !!!
         //
@@ -170,6 +185,14 @@ public class Radar
         //
         // !!! add code here !!!
         //
+        Random rand= new Random();
+         for( int i=0; i< currentScan.length; i++){
+            for( int j=0; j<currentScan[i].length; j++){
+                if(rand.nextDouble()==noiseFraction){
+                    currentScan[i][j]=true;
+                }
+            }
+        }
         
         
     }
