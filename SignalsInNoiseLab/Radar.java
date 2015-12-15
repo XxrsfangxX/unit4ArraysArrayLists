@@ -39,8 +39,8 @@ public class Radar
         //
         // !!! add code here !!!
         //
-        boolean [][]  currentScan= new boolean [rows][cols];
-        int [][] accumulator= new int [rows][cols];
+        this.currentScan= new boolean[rows][cols];
+        this.accumulator= new int [rows][cols];
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method for the unit test
@@ -64,13 +64,15 @@ public class Radar
         //    4. update the accumulator 2D array based on the state of the currentScan 2D array
         //    5. increment the numScans instance variable
         
-        for( int i=0; i< currentScan.length; i++){
-            for( int j=0; j< (currentScan[i]).length; j++){
+        
+        for( int i=0; i< this.currentScan.length; i++){
+            for( int j=0; j< (this.currentScan[i]).length; j++){
                 currentScan[i][j]= false;
             }
         }
-        setMonsterLocation(monsterLocationRow, monsterLocationCol);
+        this.setMonsterLocation(monsterLocationRow, monsterLocationCol);
         
+        this.injectNoise();
         
         for( int i=0; i< currentScan.length; i++){
             for( int j=0; j<currentScan[i].length; j++){
@@ -79,6 +81,7 @@ public class Radar
                 }
             }
         }
+        this.numScans+=1;
         //
         // !!! add code here !!!
         //
@@ -188,7 +191,8 @@ public class Radar
         Random rand= new Random();
          for( int i=0; i< currentScan.length; i++){
             for( int j=0; j<currentScan[i].length; j++){
-                if(rand.nextDouble()==noiseFraction){
+                
+                if(Math.random()< noiseFraction){
                     currentScan[i][j]=true;
                 }
             }
