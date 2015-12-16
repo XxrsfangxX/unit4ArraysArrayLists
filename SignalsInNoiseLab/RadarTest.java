@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.Scanner;
 
 /**
  * Write a description of test class RadarTest here.
@@ -15,7 +16,9 @@ public class RadarTest
 {
     /** description of instance variable x (add comment for each instance variable) */
     private int x;
-
+    
+     final int ROWS=100;
+     final int COLS=100;
     /**
      * Default constructor for objects of class RadarTest
      */
@@ -24,9 +27,10 @@ public class RadarTest
         // initialise instance variables
         final int ROWS=100;
         final int COLS=100;
-        Radar radar= new Radar(100, 100);
-        radar.scan();
-        radar.setNoiseFraction(.10);
+         boolean[][] currentScan;
+        int[][] accumulator;
+      int monsterLocationRow;
+         int monsterLocationCol;
     }
     
     /**
@@ -53,6 +57,54 @@ public class RadarTest
        
     }
     
-
+  
+    @Test
+    public void testRadar123(){
+        Scanner scan= new Scanner(System.in);
+        System.out.println("Enter monster row");
+        int monsRow= scan.nextInt();
+        System.out.println("Enter monster col");
+        int monsCol= scan.nextInt();
+        Radar radar= new Radar(ROWS,COLS);
+        radar.setMonsterLocation(monsRow, monsCol);
+        for(int i=0; i< 10; i++){
+            radar.scan();
+        }
+        int rows= radar.getNumRows();
+        int cols= radar.getNumCols();
+        int scans= radar.getNumScans();
+        for( int l=0; l<rows; l++){
+            for( int j=0; j<cols; j++)
+            if(radar.getAccumulatedDetection( l, j)== scans){
+                assertEquals(monsRow, l);
+                assertEquals(monsCol,j);
+            }
+        }
+        
+    }
     
+    @Test
+    public void testRadar1234(){
+        Scanner scan= new Scanner(System.in);
+        System.out.println("Enter monster row");
+        int monsRow= scan.nextInt();
+        System.out.println("Enter monster col");
+        int monsCol= scan.nextInt();
+        Radar radar= new Radar(ROWS,COLS, monsRow, monsCol);
+       
+        for(int i=0; i< 100; i++){
+            radar.scan();
+        }
+        int rows= radar.getNumRows();
+        int cols= radar.getNumCols();
+        int scans= radar.getNumScans();
+        for( int l=0; l<rows; l++){
+            for( int j=0; j<cols; j++)
+            if(radar.getAccumulatedDetection( l, j)== scans){
+                assertEquals(monsRow, l);
+                assertEquals(monsCol,j);
+            }
+        }
+        
+    }
 }

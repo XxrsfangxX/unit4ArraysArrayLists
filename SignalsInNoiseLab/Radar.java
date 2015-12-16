@@ -50,6 +50,33 @@ public class Radar
         noiseFraction = 0.05;
         numScans= 0;
     }
+     /**
+     * Constructor for objects of class Radar
+     * 
+     * @param   rows    the number of rows in the radar grid
+     * @param   cols    the number of columns in the radar grid
+     * @param   monsRow the row of the monster
+     * @param   monsCol the col of the monster
+     */
+    public Radar(int rows, int cols, int monsRow, int monsCol)
+    {
+        // initialize the currentScan 2D array and the accumulator 2D array
+        
+        
+        //
+        // !!! add code here !!!
+        //
+        this.currentScan= new boolean[rows][cols];
+        this.accumulator= new int [rows][cols];
+        
+        // randomly set the location of the monster (can be explicity set through the
+        //  setMonsterLocation method for the unit test
+        monsterLocationRow = monsRow;
+        monsterLocationCol = monsCol;
+        
+        noiseFraction = 0.05;
+        numScans= 0;
+    }
     
     /**
      * Performs a scan of the radar. Noise is injected into the grid and the accumulator is updated.
