@@ -92,7 +92,7 @@ public class RadarTest
         int monsCol= scan.nextInt();
         Radar radar= new Radar(ROWS,COLS, monsRow, monsCol);
        
-        for(int i=0; i< 100; i++){
+        for(int i=0; i< 37; i++){
             radar.scan();
         }
         int rows= radar.getNumRows();
